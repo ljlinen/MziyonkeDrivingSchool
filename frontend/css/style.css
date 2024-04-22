@@ -78,6 +78,47 @@ body {
     backdrop-filter: blur(50px) ;
   }
 
+  .dialogue {
+    position: absolute;
+    top: 10vh;
+    left: 25vw;
+    right: 25vw;
+    display: none;
+    flex-direction: column;
+    width: 200px;
+    box-shadow: #15151559 0px 0px 5px 0px;
+    background-color: #3a3a3a;
+    text-align: center;
+    border-radius: 5px;
+    gap: 6px;
+    padding: 15px;
+    z-index: 5;
+    transition: 1.3s all ease-in;
+  }
+  .dialogue .title {
+    padding: 6px 4px;
+    font-size: 2rem;
+    font-weight: 900;
+  }
+  .dialogue .message {
+    filter: contrast(0.75);
+    padding: 6px 8px;
+  } 
+  .dialogue .div-yes-or-no {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25%;
+  }
+  .dialogue .div-yes-or-no :nth-child(1) {
+    color: rgb(148, 207, 70);
+  }
+  .dialogue .div-yes-or-no :nth-child(2) {
+    display: none;
+    color: rgb(114, 114, 114);
+  }
+
 .nav {
     width: 100%;
     height: 100px;
@@ -149,8 +190,6 @@ body {
   margin-top: 11px;
   margin-right: 4px;
 }
-
-
 .menu-cancel .one,
 .menu-cancel .two {
   position: absolute;

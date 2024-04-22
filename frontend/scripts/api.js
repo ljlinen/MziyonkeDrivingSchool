@@ -2,22 +2,24 @@
 let envport = '';
 let envhost = '';
 
-await fetch('./env.json')
-   .then(response => {
-     if (!response.ok) {
-       throw new Error('failed loading env json');
-     }
-     return response.json();
-   })
-   .then(data => {
-     envport = data.port;
-     envhost = data.host;
-   })
-   .catch(error => {
-     console.error('Error:', error);
-   });
+(async() => {
+  await fetch('./env.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('failed loading env json');
+      }
+      return response.json();
+    })
+    .then(data => {
+      envport = data.port;
+      envhost = data.host;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  })();
 
-zasync function apiFetch(fetchType, endpoint, params) {
+async function apiFetch(fetchType, endpoint, params) {
  
     const options = {
         method: `${fetchType}`,
@@ -45,7 +47,10 @@ zasync function apiFetch(fetchType, endpoint, params) {
         const responseBody = await response.json(); // Parse response body as JSON
         return responseBody;
     } catch (error) {
-        console.error('Error:', error);
+      if(error instanceof Object) {
+                console.log('Error: ' + error);
+      }
+
         throw error;
     }
 }

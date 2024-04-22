@@ -1,6 +1,6 @@
 //When a card is clicked, it should move into view
 
-import { apiFetch } from "./api.js";
+//import { apiFetch } from "./api.js";
 
 const servCards = document.querySelectorAll('.servCard');
 const servContent = document.querySelector('.servContent');
@@ -42,10 +42,6 @@ menuCancel.addEventListener('click', () => {
   clicked = false;
   }
 }); 
-
-function testFunction() {
-  alert("Works!");
-}
 
     //When any link is clicked, it should scroll to the requested view
 
@@ -119,16 +115,58 @@ document.getElementById('application-submit').addEventListener('click', async() 
       document.querySelector('.section-application').innerText = `Application Submitted`;
 
       if(res.success) {
-      alert(res.success);
+        Dialogue('Application Submitted',
+        `${res.success}`,
+        'Okay');
       } else {
-      alert(res)
+      Dialogue('Application Submitted',
+      `${res}`,
+      'Okay');
       }
   }).catch((error) => {
     if(error.error) {
-      alert(error.error);
+      Dialogue('Error, Sorry Application Cancelled',
+      `${error.error}`,
+      'Okay');
       } else {
-      alert(error)
+        Dialogue('Error, Sorry Application Cancelled',
+        `${error}`,
+        'Okay');
       }     
   })
 
 })
+
+//Function shows dialogue when called
+const Dialogue = (diati, diamsg, diapos, dianeg, funpositive, funnegative) => {
+
+  const dialogue = document.querySelector('.dialogue');
+  const title = dialogue.firstElementChild;
+  title.innerText = diati;
+  const message = title.nextElementSibling;
+  message.innerText = diamsg
+  
+  if(funpositive) {
+    dialogue.style.display = 'flex';
+    const btnpositive = message.nextElementSibling.firstElementChild;
+    btnpositive.innerText = diapos;
+    const btnnegative = btnpositive.nextElementSibling;
+
+    btnpositive.addEventListener('click', () => { 
+      funpositive();
+      dialogue.style.display = 'none';
+      btnnegative.style.display = 'none';
+    });
+
+    if(funnegative) {
+    
+      btnnegative.style.display = 'flex'
+      btnnegative.innerText = dianeg;
+      btnnegative.addEventListener('click', () => { 
+        funnegative();
+        dialogue.style.display = 'none'
+      });
+    }
+  
+  }
+}
