@@ -38,7 +38,7 @@ async function apiFetch(fetchType, endpoint, params) {
     }
 
     try {
-        const response = await fetch('https//localhost:3000/' + `${endpoint}`, options);
+        const response = await fetch(`${endpoint}`, options);
         if (!response.ok) {
             throw await response.json();
         }
@@ -48,7 +48,7 @@ async function apiFetch(fetchType, endpoint, params) {
         return responseBody;
     } catch (error) {
       if(error instanceof Object) {
-                console.log('Error: ' + error);
+                console.log(error);
       }
 
         throw error;

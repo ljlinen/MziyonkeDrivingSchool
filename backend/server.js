@@ -9,7 +9,7 @@ app.use(bodyparser.json());
 app.use('/application', routerApplication);
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-const homepagepath = path.join(__dirname, '../frontend/index.html')
+const homepagepath = path.join(__dirname, '../frontend/Index.html')
 const homepage = fs.readFileSync(homepagepath, 'utf-8')
 
 

@@ -2,10 +2,10 @@ const myql = require('mysql2');
 require('dotenv').config();
 
 const connection = myql.createPool({
-    host: process.env.HOST,
-    database: process.env.DATABASE,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
+    host: 'localhost',
+    database: 'applications',
+    user: 'admin',
+    password: '@Root2001',
 });
 
 const updatedb = async(method, data) => {
