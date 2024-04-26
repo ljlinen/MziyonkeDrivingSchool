@@ -117,21 +117,32 @@ document.getElementById('application-submit').addEventListener('click', async() 
       if(res.success) {
         Dialogue('Application Submitted',
         `${res.success}`,
-        'Okay');
+        'Okay',
+        undefined,
+        () => {});
       } else {
       Dialogue('Application Submitted',
       `${res}`,
-      'Okay');
+      'Okay',
+      undefined,
+      () => {}
+    );
       }
   }).catch((error) => {
     if(error.error) {
       Dialogue('Error, Sorry Application Cancelled',
       `${error.error}`,
-      'Okay');
+      undefined,
+      'Okay',
+      undefined,
+      () => {});
       } else {
         Dialogue('Error, Sorry Application Cancelled',
         `${error}`,
-        'Okay');
+        undefined,
+        'Okay',
+        undefined,
+        () => {});
       }     
   })
 
@@ -140,33 +151,44 @@ document.getElementById('application-submit').addEventListener('click', async() 
 //Function shows dialogue when called
 const Dialogue = (diati, diamsg, diapos, dianeg, funpositive, funnegative) => {
 
+  const dialoguebg = document.querySelector('.dialogue-bg');
   const dialogue = document.querySelector('.dialogue');
   const title = dialogue.firstElementChild;
   title.innerText = diati;
   const message = title.nextElementSibling;
   message.innerText = diamsg
-  
-  if(funpositive) {
-    dialogue.style.display = 'flex';
-    const btnpositive = message.nextElementSibling.firstElementChild;
-    btnpositive.innerText = diapos;
-    const btnnegative = btnpositive.nextElementSibling;
+  const btnpositive = message.nextElementSibling.firstElementChild;  
 
-    btnpositive.addEventListener('click', () => { 
-      funpositive();
-      dialogue.style.display = 'none';
-      btnnegative.style.display = 'none';
-    });
+    if(typeof diapos === 'string') {
+      console.log('Enabling pose');
 
-    if(funnegative) {
-    
-      btnnegative.style.display = 'flex'
-      btnnegative.innerText = dianeg;
-      btnnegative.addEventListener('click', () => { 
-        funnegative();
-        dialogue.style.display = 'none'
+      btnpositive.innerText = diapos;
+      btnpositive.style.display = 'flex'
+      dialoguebg.style.display = 'flex';
+
+      btnpositive.addEventListener('click', () => { 
+        if(funnegative) {funpositive();}
+
+        console.log('Reverting pose');
+        btnpositive.style.display = 'none';
+        dialoguebg.style.display = 'none';
       });
-    }
+  }
+
   
+  if(dianeg) {
+    console.log('Enabling nega');
+    const btnnegative = btnpositive.nextElementSibling;
+    btnnegative.innerText = dianeg;
+    btnnegative.style.display = 'flex'
+    dialoguebg.style.display = 'flex'
+
+    btnnegative.addEventListener('click', () => { 
+      if(funnegative) {funnegative();}
+      
+      console.log('Reverting nega');
+      btnnegative.style.display = 'none';
+      dialoguebg.style.display = 'none'
+    });
   }
 }

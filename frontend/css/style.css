@@ -77,13 +77,21 @@ body {
     background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../src/images/headerbg.png);
     backdrop-filter: blur(50px) ;
   }
-
-  .dialogue {
-    position: absolute;
-    top: 10vh;
-    left: 25vw;
-    right: 25vw;
+  .dialogue-bg {
+    position: fixed;
+    justify-content: center;
+    align-items: center;
     display: none;
+    background-color: #00000086;
+    z-index: 4;
+    width: 100vw;
+    height: 100vh;
+  }
+  .dialogue {
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     flex-direction: column;
     width: 200px;
     box-shadow: #15151559 0px 0px 5px 0px;
@@ -112,6 +120,7 @@ body {
     gap: 25%;
   }
   .dialogue .div-yes-or-no :nth-child(1) {
+    display: none;
     color: rgb(148, 207, 70);
   }
   .dialogue .div-yes-or-no :nth-child(2) {
