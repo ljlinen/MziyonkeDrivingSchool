@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 const homepagepath = path.join(__dirname, '../frontend/Index.html')
 const homepage = fs.readFileSync(homepagepath, 'utf-8')
 
-
+    
     app.get('/', (req, res) => {
         res.send(homepage)
     });
