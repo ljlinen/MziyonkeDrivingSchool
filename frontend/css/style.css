@@ -434,6 +434,11 @@ ul {
 }
 .cardPdiv .p1 {
   font-weight: 600;
+  filter: contrast(0.9);
+}
+.cardPdiv .p2 {
+  font-weight: 100;
+  filter: contrast(0.2);
 }
 .cardPdiv .p-btn {
   display: flex;
@@ -444,8 +449,9 @@ ul {
   align-self: flex-end;
   background-color: rgba(41, 30, 166, 1);
   padding: 4px 6px;
-  font-weight: 600;
+  font-weight: 300;
   transition: 0.6s all;
+  filter: contrast(0.7);
 }
 
 .p-btn:hover {
